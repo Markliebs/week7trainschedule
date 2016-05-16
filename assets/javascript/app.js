@@ -56,6 +56,9 @@ trainData.on("child_added", function(childSnapshot, prevChildKey){
 	console.log(Dest);
 	console.log(Time);
 	console.log(Freq);
+	
+	var nextArr = moment().diff(moment.time);
+	var minAway = moment().diff(moment.time);
 
 	// // Prettify the employee start
 	// var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
@@ -68,7 +71,9 @@ trainData.on("child_added", function(childSnapshot, prevChildKey){
 	// var empBilled = empMonths * empRate;
 	// console.log(empBilled);
 
-	// // Add each train's data into the table 
-	// $("#employeeTable > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" + empStartPretty + "</td><td>" + empRate + "</td><td>" + empMonths + "</td><td>" + empBilled + "</td></tr>");
+	// Add each train's data into the table 
+	// $("#trainList" tbody").append("<tr><td>" + Name + "</td><td>" + Dest + "</td><td>" + Freq + "</td><td>" + nextArr + "</td><td>" + minAway + "</td></tr>");
+	$("#trainList > tbody").append("<tr><td>" + Name + "</td><td>" + Dest + "</td><td>" + Freq + "</td><td>" + nextArr + "</td><td>" + minAway + "</td><tr>");
+	//  + empBilled + "</td></tr>");
 
 });
