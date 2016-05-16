@@ -1,1 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Satisfy); !important
+/*@import url(https://fonts.googleapis.com/css?family=Satisfy); !important*/
+
+.jumbotron {
+    text-align: center;
+}
