@@ -2,29 +2,29 @@
 var trainData = new Firebase("https://trainschedhw.firebaseio.com/");
 
 // Button to grab information
-$("#trainSubmit").on("click", function(){
-    
+$("#trainSubmit").on("click", function () {
+
     // Grabs user input
 	var Name = $("#trainName").val().trim();
 	var Dest = $("#trainDest").val().trim();
 	var Time = moment($("#trainTime").val().trim(), "HH:mm").format("HH:mm");
 	var Freq = $("#trainFreq").val().trim();
-    
-    
+
+
     // Creates local "temporary" object for holding employee data
 	var newTrain = {
-		name:  Name,
+		name: Name,
 		dest: Dest,
 		time: Time,
 		freq: Freq
     }
-    
+
     // Uploads employee data to the database
 	trainData.push(newTrain);
 
 	// Logs everything to console
 	console.log(newTrain.name);
-	console.log(newTrain.dest); 
+	console.log(newTrain.dest);
 	console.log(newTrain.time);
 	console.log(newTrain.freq)
 
@@ -41,7 +41,7 @@ $("#trainSubmit").on("click", function(){
 });
 
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
-trainData.on("child_added", function(childSnapshot, prevChildKey){
+trainData.on("child_added", function (childSnapshot, prevChildKey) {
 
 	console.log(childSnapshot.val());
 
@@ -56,9 +56,13 @@ trainData.on("child_added", function(childSnapshot, prevChildKey){
 	console.log(Dest);
 	console.log(Time);
 	console.log(Freq);
-	
+
 	var nextArr = moment().diff(moment.time);
 	var minAway = moment().diff(moment.time);
+
+
+	// Use first arrival time and frequency to calculate the next arrival time
+	var nextArr = moment().diff(moment.unix(empStart, 'X'), "months");
 
 	// // Prettify the employee start
 	// var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
@@ -71,9 +75,8 @@ trainData.on("child_added", function(childSnapshot, prevChildKey){
 	// var empBilled = empMonths * empRate;
 	// console.log(empBilled);
 
-	// Add each train's data into the table 
-	// $("#trainList" tbody").append("<tr><td>" + Name + "</td><td>" + Dest + "</td><td>" + Freq + "</td><td>" + nextArr + "</td><td>" + minAway + "</td></tr>");
+	// Add each train's data into the table
 	$("#trainList > tbody").append("<tr><td>" + Name + "</td><td>" + Dest + "</td><td>" + Freq + "</td><td>" + nextArr + "</td><td>" + minAway + "</td><tr>");
-	//  + empBilled + "</td></tr>");
+
 
 });
