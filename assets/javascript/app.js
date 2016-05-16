@@ -62,7 +62,8 @@ trainData.on("child_added", function (childSnapshot, prevChildKey) {
 
 
 	// Use first arrival time and frequency to calculate the next arrival time
-	var nextArr = moment().diff(moment.unix(empStart, 'X'), "months");
+	var nextArr = moment().diff(moment.unix(Time, 'X'), "months");	
+	
 
 	// // Prettify the employee start
 	// var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
